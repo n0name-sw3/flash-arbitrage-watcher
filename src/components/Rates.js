@@ -20,7 +20,7 @@ RateBox.propTypes = {
 };
 
 const Rates = () => (
-  <Box fill={true} elevation={'small'} pad={'medium'}>
+  <Box fill={true} elevation={'small'} pad={'xsmall'}>
     <Table>
       <TableBody>
         <RateBox dexName={'Uniswap'} rate={4.0456} />

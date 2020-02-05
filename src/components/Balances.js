@@ -5,7 +5,7 @@ import daiLogo from '../media/dai-50.png';
 import batLogo from '../media/bat-50.png';
 
 const BalanceBox = ({ currencyName, currencyLogo, userBalance, aaveLiquidity }) => (
-  <Box fill elevation={'small'} pad={'medium'}>
+  <Box fill elevation={'small'} pad={'xsmall'}>
     <Image margin={{ bottom: 'small' }} src={currencyLogo} fit={'contain'} />
     <Table>
       <TableBody>

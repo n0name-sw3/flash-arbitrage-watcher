@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Meter, Table, TableBody, TableCell, TableRow, Text } from 'grommet';
 
 const Return = () => (
-  <Box fill={true} elevation={'small'} pad={'medium'}>
+  <Box fill={true} elevation={'small'} pad={'xsmall'}>
     <Table>
       <TableBody>
         <TableRow>

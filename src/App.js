@@ -5,8 +5,8 @@ import TxQueue from './components/TxQueue';
 
 const App = () => (
   <Grommet>
-    <Main pad="large">
-      <Box gap={'medium'} margin={{ horizontal: 'auto' }} width={'50%'}>
+    <Main pad="medium">
+      <Box gap={'large'} margin={{ horizontal: 'auto' }} width={'50%'}>
         <Stats />
         <TxQueue />
       </Box>
