@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const RateBox = ({ dexName, rate }) => (
   <TableRow>
     <TableCell align={'right'}>
-      <Text>{`BAT/DAI rate on ${dexName} :`}</Text>
+      <Text>{`1 BAT/DAI price on ${dexName} :`}</Text>
     </TableCell>
     <TableCell align={'left'}>
       <Text>{`${rate} `}</Text>
