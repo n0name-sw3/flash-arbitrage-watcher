@@ -1,15 +1,56 @@
 import React from 'react';
-import { Box, Grid } from 'grommet';
+import PropTypes from 'prop-types';
+import { Box, Grid, Image, Table, TableBody, TableCell, TableRow, Text } from 'grommet';
+import daiLogo from '../media/dai-50.png';
+import batLogo from '../media/bat-50.png';
 
-const Balances = () => {
-  return (
-    <Box>
-      <Grid fill columns={['50%', '50%']} rows={'flex'} gap="small">
-        <Box>DAI</Box>
-        <Box>BAT</Box>
-      </Grid>
-    </Box>
-  );
+const BalanceBox = ({ currencyLogo, userBalance, aaveLiquidity }) => (
+  <Box fill={true} elevation={'small'} pad={'medium'}>
+    <Image margin={{ bottom: 'small' }} src={currencyLogo} fit={'contain'} />
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell align={'right'}>
+            <Text>User balance :</Text>
+          </TableCell>
+          <TableCell align={'left'}>
+            <Text>{userBalance}</Text>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align={'right'}>
+            <Text>Liquidity in Aave :</Text>
+          </TableCell>
+          <TableCell align={'left'}>
+            <Text>{aaveLiquidity}</Text>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align={'right'}>
+            <Text weight={'bold'}>Total :</Text>
+          </TableCell>
+          <TableCell align={'left'}>
+            <Text weight={'bold'}>{userBalance + aaveLiquidity}</Text>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </Box>
+);
+
+BalanceBox.propTypes = {
+  currencyLogo: PropTypes.string.isRequired,
+  userBalance: PropTypes.number.isRequired,
+  aaveLiquidity: PropTypes.number.isRequired,
 };
+
+const Balances = () => (
+  <Box>
+    <Grid fill columns={['50%', '50%']} rows={'flex'} gap="small">
+      <BalanceBox currencyLogo={daiLogo} userBalance={15} aaveLiquidity={20} />
+      <BalanceBox currencyLogo={batLogo} userBalance={54} aaveLiquidity={2} />
+    </Grid>
+  </Box>
+);
 
 export default Balances;

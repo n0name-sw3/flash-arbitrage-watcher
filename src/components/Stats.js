@@ -4,16 +4,14 @@ import Balances from './Balances';
 import Rates from './Rates';
 import Return from './Return';
 
-const Stats = () => {
-  return (
-    <Box background={'brand'}>
-      <Grid fill gap="small">
-        <Balances />
-        <Rates />
-        <Return />
-      </Grid>
-    </Box>
-  );
-};
+const Stats = () => (
+  <Box background={'brand'}>
+    <Grid fill gap="small">
+      <Balances />
+      <Rates />
+      <Return />
+    </Grid>
+  </Box>
+);
 
 export default Stats;
