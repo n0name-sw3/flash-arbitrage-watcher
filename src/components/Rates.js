@@ -8,7 +8,8 @@ const RateBox = ({ dexName, rate }) => (
       <Text>{`BAT/DAI rate on ${dexName} :`}</Text>
     </TableCell>
     <TableCell align={'left'}>
-      <Text>{`${rate} (max slippage : 0.5%)`}</Text>
+      <Text>{`${rate} `}</Text>
+      <Text size={'small'}>{`(max slippage : 0.5%)`}</Text>
     </TableCell>
   </TableRow>
 );

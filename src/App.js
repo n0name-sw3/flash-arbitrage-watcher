@@ -6,7 +6,7 @@ import TxQueue from './components/TxQueue';
 const App = () => (
   <Grommet>
     <Main pad="large">
-      <Box margin={{ horizontal: 'auto' }} width={'50%'}>
+      <Box gap={'medium'} margin={{ horizontal: 'auto' }} width={'50%'}>
         <Stats />
         <TxQueue />
       </Box>

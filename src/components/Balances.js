@@ -4,33 +4,33 @@ import { Box, Image, Table, TableBody, TableCell, TableRow, Text } from 'grommet
 import daiLogo from '../media/dai-50.png';
 import batLogo from '../media/bat-50.png';
 
-const BalanceBox = ({ currencyLogo, userBalance, aaveLiquidity }) => (
+const BalanceBox = ({ currencyName, currencyLogo, userBalance, aaveLiquidity }) => (
   <Box fill elevation={'small'} pad={'medium'}>
     <Image margin={{ bottom: 'small' }} src={currencyLogo} fit={'contain'} />
     <Table>
       <TableBody>
         <TableRow>
           <TableCell align={'right'}>
-            <Text>User balance :</Text>
+            <Text size={'small'}>User balance :</Text>
           </TableCell>
           <TableCell align={'left'}>
-            <Text>{userBalance}</Text>
+            <Text size={'small'}>{`${userBalance} ${currencyName}`}</Text>
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align={'right'}>
-            <Text>Liquidity in Aave :</Text>
+            <Text size={'small'}>Liquidity in Aave :</Text>
           </TableCell>
           <TableCell align={'left'}>
-            <Text>{aaveLiquidity}</Text>
+            <Text size={'small'}>{`${aaveLiquidity} ${currencyName}`}</Text>
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align={'right'}>
-            <Text weight={'bold'}>Total :</Text>
+            <Text>{`Total balance :`}</Text>
           </TableCell>
           <TableCell align={'left'}>
-            <Text weight={'bold'}>{userBalance + aaveLiquidity}</Text>
+            <Text>{`${userBalance + aaveLiquidity} ${currencyName}`}</Text>
           </TableCell>
         </TableRow>
       </TableBody>
@@ -39,15 +39,16 @@ const BalanceBox = ({ currencyLogo, userBalance, aaveLiquidity }) => (
 );
 
 BalanceBox.propTypes = {
-  currencyLogo: PropTypes.string.isRequired,
+  currencyName: PropTypes.string.isRequired,
+  currencyLogo: PropTypes.object.isRequired,
   userBalance: PropTypes.number.isRequired,
   aaveLiquidity: PropTypes.number.isRequired,
 };
 
 const Balances = () => (
   <Box fill gap="small" direction={'row'}>
-    <BalanceBox currencyLogo={daiLogo} userBalance={15} aaveLiquidity={20} />
-    <BalanceBox currencyLogo={batLogo} userBalance={54} aaveLiquidity={2} />
+    <BalanceBox currencyName={'DAI'} currencyLogo={daiLogo} userBalance={15} aaveLiquidity={20} />
+    <BalanceBox currencyName={'BAT'} currencyLogo={batLogo} userBalance={54} aaveLiquidity={2} />
   </Box>
 );
 

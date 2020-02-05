@@ -1,25 +1,42 @@
 import React from 'react';
-import { Box, Grid } from 'grommet';
+import { Box, Meter, Table, TableBody, TableCell, TableRow, Text } from 'grommet';
 
 const Return = () => (
-  <Box>
-    <Grid
-      fill
-      columns={['2/3', '1/3']}
-      rows={['flex', 'flex']}
-      gap="small"
-      areas={[
-        { name: 'returnTag', start: [0, 0], end: [0, 0] },
-        { name: 'returnChart', start: [1, 0], end: [1, 0] },
-        { name: 'feeTag', start: [0, 1], end: [0, 1] },
-        { name: 'feeChart', start: [1, 1], end: [1, 1] },
-      ]}
-    >
-      <Box gridArea="returnTag">returnTag</Box>
-      <Box gridArea="returnChart">returnChart</Box>
-      <Box gridArea="feeTag">feeTag</Box>
-      <Box gridArea="feeChart">feeChart</Box>
-    </Grid>
+  <Box fill={true} elevation={'small'} pad={'medium'}>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell align={'right'}>
+            <Text>{`Aave fees :`}</Text>
+          </TableCell>
+          <TableCell align={'left'}>
+            <Meter
+              type="bar"
+              max={1}
+              values={[{ value: 0.35, color: 'brand' }]}
+              size={'small'}
+              thickness={'small'}
+            />
+            <Text margin={{ left: 'xsmall' }}>{'0.35%'}</Text>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align={'right'}>
+            <Text>{`Expected return on arbitrage :`}</Text>
+          </TableCell>
+          <TableCell align={'left'}>
+            <Meter
+              type="bar"
+              max={1}
+              values={[{ value: 0.2, color: 0.2 > 0.35 ? 'status-ok' : 'status-error' }]}
+              size={'small'}
+              thickness={'small'}
+            />
+            <Text margin={{ left: 'xsmall' }}>{'0.2%'}</Text>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   </Box>
 );
 
