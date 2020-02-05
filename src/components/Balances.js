@@ -40,7 +40,7 @@ const BalanceBox = ({ currencyName, currencyLogo, userBalance, aaveLiquidity }) 
 
 BalanceBox.propTypes = {
   currencyName: PropTypes.string.isRequired,
-  currencyLogo: PropTypes.object.isRequired,
+  currencyLogo: PropTypes.string.isRequired,
   userBalance: PropTypes.number.isRequired,
   aaveLiquidity: PropTypes.number.isRequired,
 };
