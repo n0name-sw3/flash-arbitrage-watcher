@@ -3,7 +3,7 @@ import { Box, Text } from 'grommet';
 
 const TxQueue = () => {
   return (
-    <Box background={'accent-1'}>
+    <Box>
       <Text>Learn React</Text>
     </Box>
   );
