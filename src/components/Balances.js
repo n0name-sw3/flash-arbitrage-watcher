@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Grid, Image, Table, TableBody, TableCell, TableRow, Text } from 'grommet';
+import { Box, Image, Table, TableBody, TableCell, TableRow, Text } from 'grommet';
 import daiLogo from '../media/dai-50.png';
 import batLogo from '../media/bat-50.png';
 
 const BalanceBox = ({ currencyLogo, userBalance, aaveLiquidity }) => (
-  <Box fill={true} elevation={'small'} pad={'medium'}>
+  <Box fill elevation={'small'} pad={'medium'}>
     <Image margin={{ bottom: 'small' }} src={currencyLogo} fit={'contain'} />
     <Table>
       <TableBody>
@@ -45,11 +45,9 @@ BalanceBox.propTypes = {
 };
 
 const Balances = () => (
-  <Box>
-    <Grid fill columns={['50%', '50%']} rows={'flex'} gap="small">
-      <BalanceBox currencyLogo={daiLogo} userBalance={15} aaveLiquidity={20} />
-      <BalanceBox currencyLogo={batLogo} userBalance={54} aaveLiquidity={2} />
-    </Grid>
+  <Box fill gap="small" direction={'row'}>
+    <BalanceBox currencyLogo={daiLogo} userBalance={15} aaveLiquidity={20} />
+    <BalanceBox currencyLogo={batLogo} userBalance={54} aaveLiquidity={2} />
   </Box>
 );
 

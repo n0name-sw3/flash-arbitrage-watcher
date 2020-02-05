@@ -5,7 +5,7 @@ const Return = () => (
   <Box>
     <Grid
       fill
-      columns={['66%', '33%']}
+      columns={['2/3', '1/3']}
       rows={['flex', 'flex']}
       gap="small"
       areas={[

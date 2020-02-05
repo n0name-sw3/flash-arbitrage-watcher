@@ -1,19 +1,15 @@
 import React from 'react';
-import { Box, Grid, Grommet, Main } from 'grommet';
+import { Box, Grommet, Main } from 'grommet';
 import Stats from './components/Stats';
 import TxQueue from './components/TxQueue';
 
 const App = () => (
   <Grommet>
     <Main pad="large">
-      <Grid fill columns={['25%', '50%', '25%']} rows={['flex']} gap="small">
-        <Box />
-        <Box gap={'small'}>
-          <Stats />
-          <TxQueue />
-        </Box>
-        <Box />
-      </Grid>
+      <Box margin={{ horizontal: 'auto' }} width={'50%'}>
+        <Stats />
+        <TxQueue />
+      </Box>
     </Main>
   </Grommet>
 );

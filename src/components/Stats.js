@@ -1,16 +1,14 @@
 import React from 'react';
-import { Box, Grid } from 'grommet';
+import { Box } from 'grommet';
 import Balances from './Balances';
 import Rates from './Rates';
 import Return from './Return';
 
 const Stats = () => (
-  <Box background={'brand'}>
-    <Grid fill gap="small">
-      <Balances />
-      <Rates />
-      <Return />
-    </Grid>
+  <Box fill gap="small">
+    <Balances />
+    <Rates />
+    <Return />
   </Box>
 );
 
