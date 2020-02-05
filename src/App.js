@@ -1,20 +1,23 @@
 import React from 'react';
+import { Box, Grid, Grommet, Main } from 'grommet';
+import Stats from './components/Stats';
+import TxQueue from './components/TxQueue';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet>
+      <Main pad="large">
+        <Grid fill columns={['25%', '50%', '25%']} rows={['flex']} gap="small">
+          <Box />
+          <Box gap={'small'}>
+            <Stats />
+            <TxQueue />
+          </Box>
+          <Box />
+        </Grid>
+      </Main>
+    </Grommet>
   );
-}
+};
 
 export default App;
