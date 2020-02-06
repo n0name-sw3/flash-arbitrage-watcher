@@ -5,10 +5,20 @@ import kyberData from './util/kyberData';
 import uniswapData from './util/uniswapData';
 
 const initialState = {
+  isInitialized: false,
+  ethPrivateKey: '',
+  infuraKey: '',
+  dfuseKey: '',
   ratesIndex: 0,
   uniswapRate: uniswapData[0],
   kyberRate: kyberData[0],
 };
+
+const INITIALIZE = 'INITIALIZE';
+const initialize = (ethPrivateKey, infuraKey, dfuseKey) => ({
+  type: INITIALIZE,
+  payload: { ethPrivateKey, infuraKey, dfuseKey },
+});
 
 const UPDATE_RATES = 'UPDATE_RATES';
 const updateRates = () => ({
@@ -19,20 +29,23 @@ const updateRates = () => ({
 const mainReducer = (state = initialState, action) => {
   let ratesIndex, uniswapRate, kyberRate;
   switch (action.type) {
+    case INITIALIZE:
+      return Object.assign({}, state, {
+        isInitialized: true,
+        ethPrivateKey: action.payload.ethPrivateKey,
+        infuraKey: action.payload.infuraKey,
+        dfuseKey: action.payload.dfuseKey,
+      });
     case UPDATE_RATES:
-      console.log(state);
       ratesIndex = state.ratesIndex + 1;
-      console.log(ratesIndex);
       uniswapRate =
         ratesIndex < uniswapData.length
           ? uniswapData[ratesIndex]
           : uniswapData[uniswapData.length - 1] + Math.random() * 0.01;
-      console.log(uniswapRate);
       kyberRate =
         ratesIndex < kyberData.length
           ? kyberData[ratesIndex]
           : kyberData[kyberData.length - 1] + Math.random() * 0.01;
-      console.log(kyberRate);
       return Object.assign({}, state, {
         ratesIndex,
         uniswapRate,
@@ -61,4 +74,4 @@ export function configureStore(initialState = {}) {
   return store;
 }
 
-export { updateRates };
+export { updateRates, initialize };
