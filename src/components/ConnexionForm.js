@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { initialize, updateRates } from '../store';
 import { store } from '../index';
+import { initWeb3 } from '../util/web3';
 
 const startRateUpdates = () => {
   setInterval(() => {
@@ -15,6 +16,7 @@ const ConnexionForm = ({ initialize }) => {
   const onSubmit = ({ value }) => {
     const { ethPrivateKey, infuraKey, dfuseKey } = value;
     initialize(ethPrivateKey, infuraKey, dfuseKey);
+    initWeb3(infuraKey, ethPrivateKey);
     startRateUpdates();
   };
 
