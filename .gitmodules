@@ -1,0 +1,3 @@
+[submodule "aave-protocol"]
+	path = aave-protocol
+	url = https://github.com/aave/aave-protocol.git
