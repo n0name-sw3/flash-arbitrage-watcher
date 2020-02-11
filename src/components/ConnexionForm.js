@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { initialize, updateRates } from '../store';
 import { store } from '../index';
 import { initWeb3 } from '../util/web3';
+import { initDfuse } from '../util/dfuse';
 
 const startRateUpdates = () => {
   setInterval(() => {
@@ -17,6 +18,7 @@ const ConnexionForm = ({ initialize }) => {
     const { ethPrivateKey, infuraKey, dfuseKey } = value;
     initialize(ethPrivateKey, infuraKey, dfuseKey);
     initWeb3(infuraKey, ethPrivateKey);
+    initDfuse(dfuseKey);
     startRateUpdates();
   };
 

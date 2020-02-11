@@ -12,6 +12,7 @@ const initialState = {
   ratesIndex: 0,
   uniswapRate: uniswapData[0],
   kyberRate: kyberData[0],
+  txs: [],
 };
 
 const INITIALIZE = 'INITIALIZE';
@@ -26,8 +27,14 @@ const updateRates = () => ({
   payload: {},
 });
 
+const ADD_TX = 'ADD_TX';
+const addTx = (hash, sellDaiOnUniswap, cancel) => ({
+  type: ADD_TX,
+  payload: { hash, sellDaiOnUniswap, cancel },
+});
+
 const mainReducer = (state = initialState, action) => {
-  let ratesIndex, uniswapRate, kyberRate;
+  let ratesIndex, uniswapRate, kyberRate, txs;
   switch (action.type) {
     case INITIALIZE:
       return Object.assign({}, state, {
@@ -35,6 +42,16 @@ const mainReducer = (state = initialState, action) => {
         ethPrivateKey: action.payload.ethPrivateKey,
         infuraKey: action.payload.infuraKey,
         dfuseKey: action.payload.dfuseKey,
+      });
+    case ADD_TX:
+      txs = state.txs;
+      txs.unshift({
+        hash: action.payload.hash,
+        sellDaiOnUniswap: action.payload.sellDaiOnUniswap,
+        cancel: action.payload.cancel,
+      });
+      return Object.assign({}, state, {
+        txs: txs.slice(),
       });
     case UPDATE_RATES:
       ratesIndex = state.ratesIndex + 1;
@@ -74,4 +91,4 @@ export function configureStore(initialState = {}) {
   return store;
 }
 
-export { updateRates, initialize };
+export { updateRates, initialize, addTx };
