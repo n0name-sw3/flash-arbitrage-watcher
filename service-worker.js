@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/flash-arbitrage-watcher/precache-manifest.5b9544b84dca8dc62ae05126b4e522a0.js"
+  "/flash-arbitrage-watcher/precache-manifest.49d896906d30214f94042a75eaaeb890.js"
 );
 
 self.addEventListener('message', (event) => {

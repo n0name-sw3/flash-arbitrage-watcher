@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f66d92a33c8987563c1d649110f74a34",
+    "revision": "4e63322240bce4f45b52228acdc7c925",
     "url": "/flash-arbitrage-watcher/index.html"
   },
   {
-    "revision": "1ac38ac9339c7c2062dc",
+    "revision": "ff50b61936166be2b92e",
     "url": "/flash-arbitrage-watcher/static/css/main.575b549f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/flash-arbitrage-watcher/static/js/2.c53687ec.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1ac38ac9339c7c2062dc",
-    "url": "/flash-arbitrage-watcher/static/js/main.01362bac.chunk.js"
+    "revision": "ff50b61936166be2b92e",
+    "url": "/flash-arbitrage-watcher/static/js/main.f9a6238a.chunk.js"
   },
   {
     "revision": "d244a11a403a8dc4052f",
