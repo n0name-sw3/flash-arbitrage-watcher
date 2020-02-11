@@ -43,7 +43,7 @@ const TxBox = ({ cancel, sellDaiOnUniswap, txHash }) => {
       );
       await stream.join(); // awaits stream completion, which is never for this operation
     })();
-  }, txHash);
+  }, [txHash]);
 
   return (
     <Box background={getBgColor()} fill={true} elevation={'small'} pad={'xsmall'}>

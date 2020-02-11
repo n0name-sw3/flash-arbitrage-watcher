@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, Meter, Table, TableBody, TableCell, TableRow, Text } from 'grommet';
-import { AAVE_THRESHOLD, SLIPPAGE_RATE } from '../util/constants';
+import { AAVE_THRESHOLD } from '../util/constants';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import getRelDeltaSlippageFree from '../util/getRelDeltaSlippageFree';
 
 const Return = ({ uniswapRate, kyberRate }) => {
-  const delta = Math.abs(uniswapRate - kyberRate);
-  const relDelta = delta / Math.max(uniswapRate, kyberRate);
-  const relDeltaSlippageFree = Math.max(0, relDelta - SLIPPAGE_RATE * 2);
+  const relDeltaSlippageFree = getRelDeltaSlippageFree(uniswapRate, kyberRate);
   const shouldSwap = relDeltaSlippageFree > AAVE_THRESHOLD;
   return (
     <Box fill={true} elevation={'small'} pad={'xsmall'}>

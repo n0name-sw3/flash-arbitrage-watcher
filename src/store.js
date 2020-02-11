@@ -3,9 +3,20 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import kyberData from './util/kyberData';
 import uniswapData from './util/uniswapData';
+import getRelDeltaSlippageFree from './util/getRelDeltaSlippageFree';
+import { AAVE_THRESHOLD } from './util/constants';
+import { cancelFlashLoan, submitFlashLoan } from './util/web3';
 
 const initialState = {
   isInitialized: false,
+  /**
+   * scenarioState
+   * 0 : no arbitrage needed
+   * 1 : should sell BAT on Uniswap and buy on Kyber
+   * 2 : should cancel previous tx
+   * 3 : should sell BAT on Kyber and buy on Uniswap
+   */
+  scenarioState: 0,
   ethPrivateKey: '',
   infuraKey: '',
   dfuseKey: '',
@@ -34,7 +45,7 @@ const addTx = (hash, sellDaiOnUniswap, cancel) => ({
 });
 
 const mainReducer = (state = initialState, action) => {
-  let ratesIndex, uniswapRate, kyberRate, txs;
+  let ratesIndex, uniswapRate, kyberRate, txs, relDeltaSlippageFree, shouldSwap, scenarioState;
   switch (action.type) {
     case INITIALIZE:
       return Object.assign({}, state, {
@@ -63,7 +74,22 @@ const mainReducer = (state = initialState, action) => {
         ratesIndex < kyberData.length
           ? kyberData[ratesIndex]
           : kyberData[kyberData.length - 1] + Math.random() * 0.01;
+
+      relDeltaSlippageFree = getRelDeltaSlippageFree(uniswapRate, kyberRate);
+      shouldSwap = relDeltaSlippageFree > AAVE_THRESHOLD;
+      scenarioState = state.scenarioState;
+      if (scenarioState === 0 && shouldSwap && uniswapRate > kyberRate) {
+        scenarioState = 1;
+        submitFlashLoan(false);
+      } else if (scenarioState === 1 && !shouldSwap && uniswapRate > kyberRate) {
+        scenarioState = 2;
+        cancelFlashLoan();
+      } else if (scenarioState === 2 && shouldSwap && uniswapRate < kyberRate) {
+        scenarioState = 3;
+        submitFlashLoan(true);
+      }
       return Object.assign({}, state, {
+        scenarioState,
         ratesIndex,
         uniswapRate,
         kyberRate,
