@@ -16,6 +16,16 @@ const startRateUpdates = () => {
 const ConnexionForm = ({ initialize }) => {
   const onSubmit = ({ value }) => {
     const { ethPrivateKey, infuraKey, dfuseKey } = value;
+    if (
+      ethPrivateKey.length !== 66 ||
+      !(ethPrivateKey.startsWith('0x') || ethPrivateKey.startsWith('0X')) ||
+      infuraKey.length < 30 ||
+      infuraKey.length > 34 ||
+      dfuseKey.length < 38 ||
+      dfuseKey.length > 40 ||
+      !dfuseKey.startsWith('server_')
+    )
+      return;
     initialize(ethPrivateKey, infuraKey, dfuseKey);
     initWeb3(infuraKey, ethPrivateKey);
     initDfuse(dfuseKey);
